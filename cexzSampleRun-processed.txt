@@ -1,0 +1,62 @@
+Script started on Mon 07 Oct 2013 04:11:51 PM PDT
+anthony:~$ cd '/home/anthony/Dropbox/COMP232/Lab5/task2'
+anthony:task2$ ls -l
+total 56
+-rw-rw-r-- 1 anthony anthony  164 Sep 30 17:55 input.txt
+-rw-rw-r-- 1 anthony anthony  816 Oct  7 10:54 l5t2.c
+-rwxrwxr-x 1 anthony anthony 5472 Oct  7 15:56 process.sh
+-rwxrwxr-x 1 anthony anthony 1775 Oct  4 07:59 process.sh~
+-rw-rw-r-- 1 anthony anthony 7360 Oct  7 10:54 scanner.c
+-rw-rw-r-- 1 anthony anthony 7360 Sep 30 19:40 scanner.c~
+-rw-rw-r-- 1 anthony anthony  584 Oct  7 10:54 scanner.h
+-rwxrwxr-x 1 anthony anthony  253 Oct  2 13:19 script.sh~
+-rw-rw-r-- 1 anthony anthony  716 Sep 30 19:43 task2_out.txt~
+-rw-rw-r-- 1 anthony anthony  886 Sep 30 19:42 task2_script-processed.txt~
+-rw-rw-r-- 1 anthony anthony	0 Sep 30 16:57 test.txt~
+-rw-rw-r-- 1 anthony anthony  336 Sep 30 18:25 transTable.txt
+anthony:task2$ ./process.sh 5 2 transTable.txt input.txt
+
+Executing program with command: ./l5t2 transTable.txt input.txt
+Output written to task2_out.txt
+
+Script started, file is task2_script.txt
+$ ./l5t2 transTable.txt input.txt
+{<identifier> firstvar}, {<assignment>}, {<number> 1}, {<semicolon>}, {<identifier> secondvar}, {<assignment>}, {<number> 2}, {<semicolon>}, {<keyword> repeat}, {<lparen>}, {<number> 10}, {<rparen>}, {<identifier> thirdvar}, {<assignment>}, {<number> 2}, {<mult_op> *}, {<lparen>}, {<identifier> firstvar}, {<add>}, {<identifier> secondvar}, {<rparen>}, {<mult_op> /}, {<lparen>}, {<identifier> firstvar}, {<add>}, {<number> 2}, {<rparen>}, {<semicolon>}, {<keyword> repeat}, {<lparen>}, {<identifier> firstvar}, {<add>}, {<number> 2}, {<mult_op> *}, {<identifier> secondvar}, {<rparen>}, {<keyword> repeat}, {<lparen>}, {<identifier> thirdvar}, {<rparen>}, {<keyword> print}, {<identifier> firstvar}, {<semicolon>}
+
+$ ./l5t2 transTable.txt < input.txt
+{<identifier> firstvar}, {<assignment>}, {<number> 1}, {<semicolon>}, {<identifier> secondvar}, {<assignment>}, {<number> 2}, {<semicolon>}, {<keyword> repeat}, {<lparen>}, {<number> 10}, {<rparen>}, {<identifier> thirdvar}, {<assignment>}, {<number> 2}, {<mult_op> *}, {<lparen>}, {<identifier> firstvar}, {<add>}, {<identifier> secondvar}, {<rparen>}, {<mult_op> /}, {<lparen>}, {<identifier> firstvar}, {<add>}, {<number> 2}, {<rparen>}, {<semicolon>}, {<keyword> repeat}, {<lparen>}, {<identifier> firstvar}, {<add>}, {<number> 2}, {<mult_op> *}, {<identifier> secondvar}, {<rparen>}, {<keyword> repeat}, {<lparen>}, {<identifier> thirdvar}, {<rparen>}, {<keyword> print}, {<identifier> firstvar}, {<semicolon>}
+
+Script done, file is task2_script.txt
+
+Zipping the following files into AnthonyBriceLab5Task2.zip
+  adding: l5t2.c (deflated 47%)
+  adding: scanner.c (deflated 66%)
+  adding: scanner.h (deflated 36%)
+  adding: task2_out.txt (deflated 70%)
+  adding: task2_script-processed.txt (deflated 82%)
+  adding: transTable.txt (deflated 58%)
+  adding: input.txt (deflated 48%)
+
+anthony:task2$ ls -l
+total 92
+-rw-rw-r-- 1 anthony anthony  5135 Oct	7 16:14 AnthonyBriceLab5Task2.zip
+-rw-rw-r-- 1 anthony anthony   164 Sep 30 17:55 input.txt
+-rwxrwxr-x 1 anthony anthony 13832 Oct	7 16:14 l5t2
+-rw-rw-r-- 1 anthony anthony   816 Oct	7 16:14 l5t2.c
+-rwxrwxr-x 1 anthony anthony  5472 Oct	7 15:56 process.sh
+-rwxrwxr-x 1 anthony anthony  1775 Oct	4 07:59 process.sh~
+-rw-rw-r-- 1 anthony anthony  7360 Oct	7 16:14 scanner.c
+-rw-rw-r-- 1 anthony anthony  7360 Sep 30 19:40 scanner.c~
+-rw-rw-r-- 1 anthony anthony   584 Oct	7 16:14 scanner.h
+-rwxrwxr-x 1 anthony anthony   253 Oct	2 13:19 script.sh~
+-rw-rw-r-- 1 anthony anthony   802 Oct	7 16:14 task2_out.txt
+-rw-rw-r-- 1 anthony anthony   716 Sep 30 19:43 task2_out.txt~
+-rw-rw-r-- 1 anthony anthony  1688 Oct	7 16:14 task2_script-processed.txt
+-rw-rw-r-- 1 anthony anthony   886 Sep 30 19:42 task2_script-processed.txt~
+-rw-rw-r-- 1 anthony anthony  1694 Oct	7 16:14 task2_script.txt
+-rw-rw-r-- 1 anthony anthony	 0 Sep 30 16:57 test.txt~
+-rw-rw-r-- 1 anthony anthony   336 Sep 30 18:25 transTable.txt
+anthony:task2$ exit
+exit
+
+Script done on Mon 07 Oct 2013 04:14:33 PM PDT
