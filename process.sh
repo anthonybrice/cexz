@@ -121,3 +121,4 @@ zip ${firstName}${lastName}Lab${lab}Task${task} *.c *.h task${task}_out.txt task
 echo
 
 # Licensed under GPLv3.
+# See https://github.com/anthonybrice/cexz/blob/master/LICENSE for more info.
