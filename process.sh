@@ -66,12 +66,8 @@ for arg in $@; do
 	fi
 	if [ "$arg" == "g" ]; then
 		gcBool=true
-		echo $index
-		echo "${@:index+1:1}"
 		gcString+="${@:$index+2:${@:index+1:1}}"
 		argOffset=$[argOffset+2+${@:$index+1:1}]
-		echo $argOffset
-		echo $gcString
 	fi
 done
 
@@ -112,29 +108,29 @@ else
 	gcc *.c -o l${lab}t${task}
 fi
 
-# # Execute valgrind run.
-# if $valgrind ; then
-# 	printf "\nValgrind executable is l${lab}t${task}val. Executing run...\n"
-# 	gcc *.c -g -O1 -w -o l${lab}t${task}val
-# 	valgrind --leak-check=yes ./l${lab}t${task}val ${@:$argOffset+3} > l${lab}t${task}val.txt 2>&1
-# 	printf "Output saved to l${lab}t${task}val.txt\n"
-# fi
+# Execute valgrind run.
+if $valgrind ; then
+	printf "\nValgrind executable is l${lab}t${task}val. Executing run...\n"
+	gcc *.c -g -O1 -w -o l${lab}t${task}val
+	valgrind --leak-check=yes ./l${lab}t${task}val ${@:$argOffset+3} > l${lab}t${task}val.txt 2>&1
+	printf "Output saved to l${lab}t${task}val.txt\n"
+fi
 
-# # Print the output of the program.
-# args="${@:$argOffset+3}"
-# printf "\nExecuting program with command: ./l${lab}t${task} $args\n"
-# ./l${lab}t${task} ${@:argOffset+3} >> task${task}_out.txt
-# printf "Output written to task${task}_out.txt\n\n"
+# Print the output of the program.
+args="${@:$argOffset+3}"
+printf "\nExecuting program with command: ./l${lab}t${task} $args\n"
+./l${lab}t${task} ${@:argOffset+3} >> task${task}_out.txt
+printf "Output written to task${task}_out.txt\n\n"
 
-# # Make the script.
-# script task${task}_script.txt -a -c "bash process.sh s ${lab} ${task} $args"
+# Make the script.
+script task${task}_script.txt -a -c "bash process.sh s ${lab} ${task} $args"
 
-# # Clean the script.
-# cat task${task}_script.txt | perl -pe 's/\e([^\[\]]|\[.*?[a-zA-Z]|\].*?\a)//g' | col -b > task${task}_script-processed.txt
+# Clean the script.
+cat task${task}_script.txt | perl -pe 's/\e([^\[\]]|\[.*?[a-zA-Z]|\].*?\a)//g' | col -b > task${task}_script-processed.txt
 
-# # Make the zip
-# printf "\nZipping the following files into ${firstName}${lastName}Lab${lab}Task${task}.zip\n"
-# zip ${firstName}${lastName}Lab${lab}Task${task} *.c *.h task${task}_out.txt task${task}_script-processed.txt ${@:$argOffset+3}
+# Make the zip
+printf "\nZipping the following files into ${firstName}${lastName}Lab${lab}Task${task}.zip\n"
+zip ${firstName}${lastName}Lab${lab}Task${task} *.c *.h task${task}_out.txt task${task}_script-processed.txt ${@:$argOffset+3}
 
 echo
 
