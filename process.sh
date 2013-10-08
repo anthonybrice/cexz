@@ -8,7 +8,7 @@
 #
 # This script will compile all .c files in the current folder. If they do not have a header, it will prepend the file with the header. If they do have a header it will update the date on the header. It will then run the executable making a file of the output with the header, and start a script with the header, running the executable with the given arguments. It will attemt to run the executable again with last argument as a replacement for stdin. It will then scrub the script for those weird input keystrokes, but I'm pretty sure we don't need to do that since our script never takes any keystrokes. It then zips all .h and .c files, the two outputfiles, and any arguments into a file named with AJ's naming scheme. THIS SCRIPT DOES NOT SUPPORT SPECIAL COMPILATIONS.
 
-# I could have made the name a run argument to keep this script as generic as possible, but it would have been a pain to have to enter it every time.
+# I could have made the name a run argument to keep this script as generic as possible, but it would have been a pain to have to enter it every time. Is there I can have a specific run argument that changes the name variables in here and saves the file?
 # PLEASE PUT YOUR NAME BELOW:
 firstName="Anthony"
 lastName="Brice"
