@@ -50,6 +50,7 @@ runScript() {
 
 # This checks the first argument for the "s" option. It should only be used when this file wants to make a script. It also checks for "v" argument which tells the script to make and run a special valgrind executable.
 valgrind=false
+gcc=false
 argOffset=0
 for arg in $@; do
 	if [ "$arg" == "s" ]; then
@@ -59,6 +60,9 @@ for arg in $@; do
 	if [ "$arg" == "v" ]; then
 		valgrind=true
 		argOffset=$[argOffset+1]
+	fi
+	if [ "$arg" == "g" ]; then
+		gcc = true
 	fi
 done
 
