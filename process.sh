@@ -50,9 +50,12 @@ runScript() {
 
 # This checks the first argument for the "s" option. It should only be used when this file wants to make a script. It also checks for "v" argument which tells the script to make and run a special valgrind executable.
 valgrind=false
-gcc=false
+gcBool=false
+gcstring=""
 argOffset=0
+index=0
 for arg in $@; do
+	index=$[index+1]
 	if [ "$arg" == "s" ]; then
 		runScript ${@:2}
 		exit
@@ -62,7 +65,13 @@ for arg in $@; do
 		argOffset=$[argOffset+1]
 	fi
 	if [ "$arg" == "g" ]; then
-		gcc = true
+		gcBool=true
+		echo $index
+		echo "${@:index+1:1}"
+		gcString+="${@:$index+2:${@:index+1:1}}"
+		argOffset=$[argOffset+2+${@:$index+1:1}]
+		echo $argOffset
+		echo $gcString
 	fi
 done
 
@@ -96,31 +105,36 @@ for f in *.{c,h} ; do
 done
 
 # Make sure executable is the latest build.
-gcc *.c -o l${lab}t${task}
-
-# Execute valgrind run.
-if $valgrind ; then
-	printf "\nValgrind executable is l${lab}t${task}val. Executing run...\n"
-	gcc *.c -g -O1 -w -o l${lab}t${task}val
-	valgrind --leak-check=yes ./l${lab}t${task}val ${@:$argOffset+3} > l${lab}t${task}val.txt 2>&1
-	printf "Output saved to l${lab}t${task}val.txt\n"
+if $gcBool ; then
+	printf "Compiling with command: gcc *.c ${gcString} -o l${lab}t${task}"
+	gcc *.c ${gcString} -o l${lab}t${task}
+else
+	gcc *.c -o l${lab}t${task}
 fi
 
-# Print the output of the program.
-args="${@:$argOffset+3}"
-printf "\nExecuting program with command: ./l${lab}t${task} $args\n"
-./l${lab}t${task} ${@:argOffset+3} >> task${task}_out.txt
-printf "Output written to task${task}_out.txt\n\n"
+# # Execute valgrind run.
+# if $valgrind ; then
+# 	printf "\nValgrind executable is l${lab}t${task}val. Executing run...\n"
+# 	gcc *.c -g -O1 -w -o l${lab}t${task}val
+# 	valgrind --leak-check=yes ./l${lab}t${task}val ${@:$argOffset+3} > l${lab}t${task}val.txt 2>&1
+# 	printf "Output saved to l${lab}t${task}val.txt\n"
+# fi
 
-# Make the script.
-script task${task}_script.txt -a -c "bash process.sh s ${lab} ${task} $args"
+# # Print the output of the program.
+# args="${@:$argOffset+3}"
+# printf "\nExecuting program with command: ./l${lab}t${task} $args\n"
+# ./l${lab}t${task} ${@:argOffset+3} >> task${task}_out.txt
+# printf "Output written to task${task}_out.txt\n\n"
 
-# Clean the script.
-cat task${task}_script.txt | perl -pe 's/\e([^\[\]]|\[.*?[a-zA-Z]|\].*?\a)//g' | col -b > task${task}_script-processed.txt
+# # Make the script.
+# script task${task}_script.txt -a -c "bash process.sh s ${lab} ${task} $args"
 
-# Make the zip
-printf "\nZipping the following files into ${firstName}${lastName}Lab${lab}Task${task}.zip\n"
-zip ${firstName}${lastName}Lab${lab}Task${task} *.c *.h task${task}_out.txt task${task}_script-processed.txt ${@:$argOffset+3}
+# # Clean the script.
+# cat task${task}_script.txt | perl -pe 's/\e([^\[\]]|\[.*?[a-zA-Z]|\].*?\a)//g' | col -b > task${task}_script-processed.txt
+
+# # Make the zip
+# printf "\nZipping the following files into ${firstName}${lastName}Lab${lab}Task${task}.zip\n"
+# zip ${firstName}${lastName}Lab${lab}Task${task} *.c *.h task${task}_out.txt task${task}_script-processed.txt ${@:$argOffset+3}
 
 echo
 
