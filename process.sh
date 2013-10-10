@@ -51,7 +51,9 @@ runScript() {
 # This checks the first argument for the "s" option. It should only be used when this file wants to make a script. It also checks for "v" argument which tells the script to make and run a special valgrind executable.
 valgrind=false
 gcBool=false
+lex=false
 gcstring=""
+lexString=""
 argOffset=0
 index=0
 for arg in $@; do
@@ -67,6 +69,11 @@ for arg in $@; do
 	if [ "$arg" == "g" ]; then
 		gcBool=true
 		gcString+="${@:$index+2:${@:index+1:1}}"
+		argOffset=$[argOffset+2+${@:$index+1:1}]
+	fi
+	if [ "$arg" == "l" ]; then
+		lex=true
+		lexString+="${@:$index+2:${@:index+1:1}}"
 		argOffset=$[argOffset+2+${@:$index+1:1}]
 	fi
 done
