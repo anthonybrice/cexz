@@ -96,6 +96,11 @@ printf "/**\n* Name: ${firstName} ${lastName}\n* Lab/task: Lab ${lab} Task ${tas
 
 printf "/**\n* Name: ${firstName} ${lastName}\n* Lab/task: Lab ${lab} Task ${task}\n* Date: $(date +%m)/$(date +%d)/$(date +%Y) $(date +%I:%M:%S) $(date +%p)\n*/\n\n" > task${task}_script.txt
 
+if $lex ; then
+	printf "Executing lex *.l ${lexString}"
+	lex *.l ${lexString}
+fi
+
 # For each .c and .h file, we check for the existence of the header. If no header, we put one in there. If a header exists, we overwrite the lab/task line and the date line.
 for f in *.{c,h} ; do
 	if ! grep -q "/**\n* Name:" "${f}"; then
