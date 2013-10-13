@@ -53,7 +53,6 @@ valgrind=false
 gcBool=false
 lex=false
 gcstring=""
-lexString=""
 argOffset=0
 index=0
 for arg in $@; do
@@ -73,8 +72,9 @@ for arg in $@; do
 	fi
 	if [ "$arg" == "l" ]; then
 		lex=true
-		lexString+="${@:$index+2:${@:index+1:1}}"
-		argOffset=$[argOffset+2+${@:$index+1:1}]
+		printf "\nExecuting lex *.l\n"
+		lex *.l ${lexString}
+		argOffset=$[argOffset+1]
 	fi
 done
 
@@ -96,19 +96,16 @@ printf "/**\n* Name: ${firstName} ${lastName}\n* Lab/task: Lab ${lab} Task ${tas
 
 printf "/**\n* Name: ${firstName} ${lastName}\n* Lab/task: Lab ${lab} Task ${task}\n* Date: $(date +%m)/$(date +%d)/$(date +%Y) $(date +%I:%M:%S) $(date +%p)\n*/\n\n" > task${task}_script.txt
 
-if $lex ; then
-	printf "Executing lex *.l ${lexString}"
-	lex *.l ${lexString}
-fi
-
 # For each .c and .h file, we check for the existence of the header. If no header, we put one in there. If a header exists, we overwrite the lab/task line and the date line.
 for f in *.{c,h} ; do
 	if ! grep -q "/**\n* Name:" "${f}"; then
 		sed -i -e "1i /**\n* Name: Anthony Brice\n* Lab/task: Lab ${lab} Task ${task}\n* Date: $(date +%m)/$(date +%d)/$(date +%Y) $(date +%I:%M:%S) $(date +%p)\n*/\n" ${f}
 	else
-		new_line="* Date: $(date +%m)/$(date +%d)/$(date +%Y) $(date +%I:%M:%S) $(date +%p)"
-		sed -i -e "3s@.*@* Lab/task: Lab ${lab} Task ${task}@" ${f}
-		sed -i -e "4s@.*@${new_line}@" ${f}
+		if [ "$f" != "lex.yy.c" ]; then
+			new_line="* Date: $(date +%m)/$(date +%d)/$(date +%Y) $(date +%I:%M:%S) $(date +%p)"
+			sed -i -e "3s@.*@* Lab/task: Lab ${lab} Task ${task}@" ${f}
+			sed -i -e "4s@.*@${new_line}@" ${f}
+		fi
 	fi
 done
 
@@ -141,8 +138,11 @@ script task${task}_script.txt -a -c "bash process.sh s ${lab} ${task} $args"
 cat task${task}_script.txt | perl -pe 's/\e([^\[\]]|\[.*?[a-zA-Z]|\].*?\a)//g' | col -b > task${task}_script-processed.txt
 
 # Make the zip
+if $lex ; then
+	rm lex.yy.c
+fi
 printf "\nZipping the following files into ${firstName}${lastName}Lab${lab}Task${task}.zip\n"
-zip ${firstName}${lastName}Lab${lab}Task${task} *.c *.h task${task}_out.txt task${task}_script-processed.txt ${@:$argOffset+3}
+zip ${firstName}${lastName}Lab${lab}Task${task} *.c *.h *.l task${task}_out.txt task${task}_script-processed.txt ${@:$argOffset+3}
 
 echo
 
