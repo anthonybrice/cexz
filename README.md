@@ -2,7 +2,7 @@
 
 This script will **C**ompile, **EX**ecute, and **Z**ip C programs with the naming scheme used by AJ at CSUCI.
 
-To use it, open the process.sh and change the `firstName` and `lastName` variables to your own. Place the script in the folder that contains the source files you wish to compile, navigate to the folder in a terminal and run with the syntax:
+To use it, open `process.sh` and change the `firstName` and `lastName` variables to your own. Place the script in the folder that contains the source files you wish to compile, navigate to the folder in a terminal and run with the syntax:
 
     $ ./process.sh [lab#] [task#] [run arguments]
 
