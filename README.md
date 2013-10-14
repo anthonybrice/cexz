@@ -8,7 +8,7 @@ To use it, open the process.sh and change the `firstName` and `lastName` variabl
 
 where run arguments are the arguments with which you wish to run your executable. By default, process.sh will make the last argument a replacement for stdin for it's second run when making a script output file.
 
-Place `l` before `lab#` to run `$ lex *.l` before compiling. Place `v` before the `lab#` to make a valgrind executable and check for memory leaks.
+Place `l` before `lab#` to run `$ lex *.l` before compiling. Place `v` before the `lab#` to make a valgrind executable and check for memory leaks, with the ouput saved to `l[lab#]t[task#].txt`.
 
 TRY IT ON BACKUP COPIES FIRST! As is, this shouldn't cause any harm to your source but awful things can happen if you mess with the sed commands in process.sh.
 
