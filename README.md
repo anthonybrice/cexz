@@ -8,7 +8,7 @@ To use it, open `process.sh` and change the `firstName` and `lastName` variables
 
 where run arguments are the arguments with which you wish to run your executable. By default, process.sh will make the last argument a replacement for stdin for it's second run when making a script output file.
 
-Place `l` before `lab#` to run `$ lex *.l` before compiling. Place `v` before the `lab#` to make a valgrind executable and check for memory leaks, with the ouput saved to `l[lab#]t[task#]val.txt`. Add `g [#] [runArgs]` before `[lab#]` where `[#]` is the number of arguments you are adding and `[runArgs]` are the arguments to add custom arguments with which you wish to compile your program.
+Place `l` before `[lab#]` to run `$ lex *.l` before compiling. Place `v` before the `lab#` to make a valgrind executable and check for memory leaks, with the ouput saved to `l[lab#]t[task#]val.txt`. Add `g [#] [runArgs]` before `[lab#]` where `[#]` is the number of arguments you are adding and `[runArgs]` are the arguments to add custom arguments with which you wish to compile your program.
 
 TRY IT ON BACKUP COPIES FIRST! As is, this shouldn't cause any harm to your source but awful things can happen if you mess with the sed commands in process.sh.
 
