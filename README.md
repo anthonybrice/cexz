@@ -1,6 +1,6 @@
 # cexz #
 
-This script will _C_ompile, _EX_ecute, and _Z_ip C programs with the naming scheme used by AJ at CSUCI.
+This script will **C**ompile, **EX**ecute, and **Z**ip C programs with the naming scheme used by AJ at CSUCI.
 
 To use it, open the script and change the firstName and lastName variables to your own. Place the script in the folder that contains the source files you wish to compile, navigate to the folder in a terminal and run with the syntax:
 
