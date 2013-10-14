@@ -12,4 +12,4 @@ Place `l` before `lab#` to run `$ lex *.l` before compiling. Place `v` before th
 
 TRY IT ON BACKUP COPIES FIRST! As is, this shouldn't cause any harm to your source but awful things can happen if you mess with the sed commands in process.sh.
 
-To be a true pro, add 'alias cexz="[any file path to process.sh]"' to your .bashrc file so that you can run the script with the cexz command and stop moving the .sh file around.
+To be a true pro, add `alias cexz="[any file path to process.sh]"` to your .bashrc file so that you can run the script with the cexz command and stop moving the .sh file around.
