@@ -52,7 +52,7 @@ runScript() {
 valgrind=false
 gcBool=false
 lex=false
-gcstring=""
+gcString=""
 argOffset=0
 index=0
 for arg in $@; do
@@ -111,10 +111,10 @@ done
 
 # Make sure executable is the latest build.
 if $gcBool ; then
-	printf "Compiling with command: gcc *.c ${gcString} -o l${lab}t${task}"
-	gcc *.c ${gcString} -o l${lab}t${task}
+	printf "Compiling with command: gcc *.c ${gcString} -o l${lab}t${task}\n"
+	gcc -std=gnu99 *.c ${gcString} -o l${lab}t${task}
 else
-	gcc *.c -o l${lab}t${task}
+	gcc -std=gnu99 *.c -o l${lab}t${task}
 fi
 
 # Execute valgrind run.
